@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">SignInSignOut</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="log_in_to_continue">Log in to continue</string>
+    <string name="email">Email</string>
+    <string name="password" />
+    <string name="create_new_account1">\n\n</string>
+    <string name="create_new_account">create new account</string>
+    <string name="name">Name</string>
+    <string name="add_image">Add Image</string>
+    <string name="emailSignUp">Email</string>
+    <string name="passwordSignUp">Password</string>
+    <string name="confirm_password">confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_new_accountSignIn">Create New Account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="passwordSignIn">Password</string>
+    <string name="Confirm_password" />
+    <string name="confirm_passwordNew">Confirm password</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+</resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "527807831892",
+    "project_id": "signinsignout-adbbf",
+    "storage_bucket": "signinsignout-adbbf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527807831892:android:4979dbed08a8b3131132c1",
+        "android_client_info": {
+          "package_name": "com.example.signinsignout"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBIi9gNZavAVHfiSs8aNNOmDJVO4KY7os"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
