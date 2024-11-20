@@ -15,6 +15,12 @@
         android:theme="@style/Theme.SignInSignOut"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.chat"
+            android:exported="false" />
+        <activity
             android:name=".activities.userActivity"
             android:exported="false" />
         <activity
