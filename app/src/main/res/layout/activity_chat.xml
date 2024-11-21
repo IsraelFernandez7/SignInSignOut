@@ -127,7 +127,7 @@
     </FrameLayout>
 
     <EditText
-        android:id="@+id/inputMessages"
+        android:id="@+id/inputMessage"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
