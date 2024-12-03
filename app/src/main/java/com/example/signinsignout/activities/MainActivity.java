@@ -23,24 +23,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
-import com.example.signinsignout.R;
 
-/**
- * Main activity that serves as the entry point for the application.
- */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
 
-    /**
-     * Called when the activity is starting. Sets up the main view layout
-     * and applies system bar insets for edge-to-edge display.
-     *      *
-     *      * @param savedInstanceState If the activity is being re-initialized after
-     *                           previously being shut down, this Bundle contains
-     *                           the data it most recently supplied.
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
         loadUserDetails();
         getToken();
         setListeners();
+
     }
 
     private void setListeners(){
         binding.imageSignOut.setOnClickListener(view -> signOut());
-
         binding.fabNewChat.setOnClickListener(v ->
-            startActivity(new Intent(getApplicationContext(), userActivity.class)));
+                startActivity(new Intent(getApplicationContext(), userActivity.class)));
     }
 
     private void loadUserDetails(){
@@ -99,5 +87,4 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 }).addOnFailureListener(e -> showToast("Unable to sign out"));
     }
-
 }
