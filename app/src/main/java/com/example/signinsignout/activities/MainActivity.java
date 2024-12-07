@@ -29,6 +29,14 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
 
+    /**
+     * Called when the activity is starting. Sets up the layout, initializes the preference manager,
+     * loads user details, retrieves a token, and sets up event listeners.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
+     *                           this Bundle contains the data it most recently supplied in {@link #onSaveInstanceState}.
+     *                           <code>null</code> if the activity is being launched for the first time.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +50,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Sets click listeners for UI components.
+     *
+     * - Signs out the user when the sign-out button is clicked.
+     * - Opens the user activity when the new chat button is clicked.
+     */
     private void setListeners(){
         binding.imageSignOut.setOnClickListener(view -> signOut());
         binding.fabNewChat.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), userActivity.class)));
     }
 
+    /**
+     * Loads the current user's details from the preference manager and updates the UI.
+     *
+     * - Sets the user's full name in the text view.
+     * - Decodes the user's profile image from a Base64 string and displays it in the profile image view.
+     */
     private void loadUserDetails(){
         binding.textName.setText(preferenceManager.getString(Constants.KEY_FIRST_NAME) + " " + preferenceManager.getString(Constants.KEY_LAST_NAME));
 
@@ -56,14 +76,25 @@ public class MainActivity extends AppCompatActivity {
         binding.imageProfile.setImageBitmap(bitmap);
     }
 
+    /**
+     * Displays a short toast message.
+     *
+     * @param message The message to be displayed in the toast.
+     */
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Retrieves the Firebase Cloud Messaging (FCM) token and updates it using the updateToken method.
+     */
     private void getToken(){
         FirebaseMessaging.getInstance().getToken().addOnSuccessListener(this::updateToken);
     }
 
+    /**
+     * Retrieves the Firebase Cloud Messaging (FCM) token and updates it using the updateToken method.
+     */
     private void updateToken(String token) {
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_USERS)
@@ -73,6 +104,14 @@ public class MainActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> showToast("Unable to update Token"));
     }
 
+    /**
+     * Signs the user out of the application.
+     *
+     * - Displays a toast message indicating the sign-out process.
+     * - Deletes the user's FCM token from the Firestore database.
+     * - Clears user preferences and redirects to the SignInActivity on success.
+     * - Displays an error toast if the sign-out process fails.
+     */
     private void signOut(){
         showToast("Signing out ...");
         FirebaseFirestore database = FirebaseFirestore.getInstance();

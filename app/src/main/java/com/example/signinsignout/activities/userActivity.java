@@ -29,7 +29,14 @@ public class userActivity extends AppCompatActivity implements UserListener {
     private ActivityUserBinding binding;
     private PreferenceManager preferenceManager;
 
-    @Override
+/**
+ * Called when the activity is starting. Sets up the layout, initializes the preference manager,
+ * sets up event listeners, and retrieves the list of users.
+ *
+ * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
+ *                           this Bundle contains the data it most recently
+*/
+ @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityUserBinding.inflate(getLayoutInflater());
@@ -39,10 +46,21 @@ public class userActivity extends AppCompatActivity implements UserListener {
         getUsers();
     }
 
+    /**
+     * Sets a click listener for the back button to navigate to the previous screen when clicked.
+     */
     private void setListeners() {
         binding.imageBack.setOnClickListener(v -> onBackPressed());
     }
 
+    /**
+     * Retrieves the list of users from the Firestore database and updates the UI.
+     *
+     * - Shows a loading indicator while fetching data.
+     * - Filters out the current user's details from the retrieved user list.
+     * - Populates the RecyclerView with the list of users if available.
+     * - Displays an error message if no users are found or the task fails.
+     */
     private void getUsers() {
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
@@ -79,17 +97,33 @@ public class userActivity extends AppCompatActivity implements UserListener {
                 });
     }
 
-
+    /**
+     * Displays an error message indicating that no users are available.
+     *
+     * - Sets the error message text.
+     * - Makes the error message view visible.
+     */
     private void showErrorMessage(){
         binding.textErrorMessage.setText(String.format("%s", "No user available"));
         binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 
-
+    /**
+     * Displays a toast message with the specified text.
+     *
+     * @param message The message to display in the toast.
+     */
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Toggles the visibility of the progress bar based on the loading state.
+     *
+     * @param isLoading A Boolean indicating whether to show or hide the progress bar.
+     *                  - true: Shows the progress bar.
+     *                  - false: Hides the progress bar.
+     */
     private void loading(Boolean isLoading) {
         if (isLoading) {
             binding.progressBar.setVisibility(View.VISIBLE);
@@ -98,6 +132,15 @@ public class userActivity extends AppCompatActivity implements UserListener {
         }
     }
 
+
+    /**
+     * Handles the event when a user is clicked in the user list.
+     *
+     * - Starts the ChatActivity, passing the selected user as an intent extra.
+     * - Finishes the current activity.
+     *
+     * @param user The selected user object.
+     */
     @Override
     public void onUserClicked(User user) {
         Intent intent = new Intent(getApplicationContext(), ChatActivity.class);

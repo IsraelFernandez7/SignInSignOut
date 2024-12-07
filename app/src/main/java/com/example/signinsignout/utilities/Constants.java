@@ -36,6 +36,9 @@ public class Constants {
     /** Key for the image field in the user database. */
     public static final String KEY_IMAGE = "image";
 
+    /**
+     * Constants used throughout the application for keys and identifiers.
+     */
     public static final String KEY_FCM_TOKEN = "fcmToken";
 
     public static final String KEY_USER = "user";
